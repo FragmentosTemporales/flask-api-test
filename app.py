@@ -9,8 +9,8 @@ from models.product import Product
 
 
 app = Flask(__name__)
-app.secret_key = "top-secret"
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
+app.secret_key = "super-secret-key-never-watch-for-anyone"
+app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///test.db'
 db.init_app(app)
 
 migrate = Migrate(app, db)

@@ -1,34 +1,39 @@
-{% with messages = get_flashed_messages() %}
-    {% if messages %}
-        {% for message in messages %}
-            {{message}}
-        {% endfor %}
-    {% endif %}
-{% endwith %}
+{% extends 'layout.html' %}
+{% block content %}
 
-<h1>Products Page</h1>
-<form action="/products" method="POST">
-    <input type="text" name="name" placeholder="name">
-    <input type="text" name="brand" placeholder="brand">
-    <input type="text" name="avatar" placeholder="avatar">
 
-    <button type="submit">Save</button>
-</form>
-<div>
-    {% for product in products %}
-    <div>
-        <h1>{{ product.name }}</h1>
-        <h4>{{ product.brand }}</h4>
-        <p>{{product.avatar}}</p>
-        <img 
-        style="border-radius: 50% ;"
-        height="200px"
-        src="{{product.avatar}}" />
-        <div>
-           <a href="{{url_for('products.delete', id=product.id)}}">Delete</a> 
-           <a href="{{url_for('products.update', id=product.id)}}">Update</a> 
-        </div>
-        
+
+<div class="row">
+    <div class="col-5">
+        {% include 'partials/_messages.html' %}
+        {% include 'partials/_productForm.html' %}
     </div>
-    {% endfor %}
+    <div class="col-7">
+        {% for product in products %}
+
+        <div class="card mb-1 text-white bg-dark">
+            <div class="card-body">
+                <div class="d-flex justify-content-between">
+                    <div class="col-3"><img 
+                        style="border-radius: 50% ;"
+                        height="200px"
+                        src="{{product.avatar}}" />
+                    </div>
+                    <div class="col-6">
+                        <h1>{{ product.name }}</h1>
+                        <h4>{{ product.brand }}</h4>
+                        <p>{{product.avatar}}</p>
+                    </div>
+                    
+                    <div>
+                        <a class="btn btn-danger btn-sm rounded-0" href="{{url_for('products.delete', id=product.id)}}">Delete</a> 
+                        <a class="btn btn-success btn-sm rounded-0" href="{{url_for('products.update', id=product.id)}}">Update</a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+    </div>
 </div>
+{% endblock %}
