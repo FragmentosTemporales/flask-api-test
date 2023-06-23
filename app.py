@@ -4,6 +4,10 @@ from routes.users import users
 from flask_migrate import Migrate
 from utils.db import db
 
+from models.user import User
+from models.product import Product
+
+
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db.init_app(app)
@@ -12,6 +16,9 @@ migrate = Migrate(app, db)
 
 app.register_blueprint(products)
 app.register_blueprint(users)
+
+with app.app_context():
+    db.create_all()
 
 @app.route("/")
 def home():
