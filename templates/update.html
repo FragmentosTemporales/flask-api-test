@@ -1,1 +1,8 @@
 <h1>UPDATE PAGE</h1>
+<form action="/update/{{product.id}}" method="POST">
+    <input type="text" name="name" placeholder="name" value="{{product.name}}">
+    <input type="text" name="brand" placeholder="brand" value="{{product.brand}}">
+    <input type="text" name="avatar" placeholder="avatar" value="{{product.avatar}}">
+
+    <button type="submit">Save</button>
+</form>

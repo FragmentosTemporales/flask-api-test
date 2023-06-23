@@ -1,3 +1,11 @@
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            {{message}}
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
 <h1>Products Page</h1>
 <form action="/products" method="POST">
     <input type="text" name="name" placeholder="name">

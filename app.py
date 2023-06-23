@@ -9,6 +9,7 @@ from models.product import Product
 
 
 app = Flask(__name__)
+app.secret_key = "top-secret"
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.db'
 db.init_app(app)
 
