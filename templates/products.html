@@ -1,1 +1,26 @@
 <h1>Products Page</h1>
+<form action="/products" method="POST">
+    <input type="text" name="name" placeholder="name">
+    <input type="text" name="brand" placeholder="brand">
+    <input type="text" name="avatar" placeholder="avatar">
+
+    <button type="submit">Save</button>
+</form>
+<div>
+    {% for product in products %}
+    <div>
+        <h1>{{ product.name }}</h1>
+        <h4>{{ product.brand }}</h4>
+        <p>{{product.avatar}}</p>
+        <img 
+        style="border-radius: 50% ;"
+        height="200px"
+        src="{{product.avatar}}" />
+        <div>
+           <a href="{{url_for('products.delete', id=product.id)}}">Delete</a> 
+           <a href="{{url_for('products.update', id=product.id)}}">Update</a> 
+        </div>
+        
+    </div>
+    {% endfor %}
+</div>
